@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fábrica de Conteúdo Viral 🚀 — Para TikTok & Reels</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #070710;
+  --bg2: #0d0d1a;
+  --card: #11111e;
+  --border: #1e1e30;
+  --pink: #ff2d78;
+  --cyan: #00e5ff;
+  --yellow: #ffea00;
+  --purple: #9b4dff;
+  --green: #00ff88;
+  --white: #f0eeff;
+  --muted: #5a5a70;
+  --radius: 16px;
+  --display: 'Bebas Neue', sans-serif;
+  --body: 'Space Grotesk', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--white);
+  font-family:var(--body);
+  font-size:15px;
+  line-height:1.6;
+  overflow-x:hidden;
+}
+
+/* ── GRAIN OVERLAY ── */
+body::after{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:9000;
+  opacity:.5;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--pink);border-radius:4px;}
+
+/* ── NAV ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:14px 32px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .3s,backdrop-filter .3s,border-color .3s;
+  border-bottom:1px solid transparent;
+}
+.nav.scrolled{
+  background:rgba(7,7,16,.92);
+  backdrop-filter:blur(16px);
+  border-bottom-color:var(--border);
+}
+.nav-logo{
+  font-family:var(--display);
+  font-size:20px;letter-spacing:2px;color:var(--pink);
+  display:flex;align-items:center;gap:8px;
+}
+.nav-cta{
+  display:none;
+}
+.nav.scrolled .nav-cta{display:block;}
+
+/* ── BUTTONS ── */
+.btn-fire{
+  display:inline-block;
+  background:var(--pink);
+  color:#fff;
+  font-family:var(--body);
+  font-weight:700;
+  font-size:15px;
+  letter-spacing:.3px;
+  padding:15px 36px;
+  border-radius:50px;
+  text-decoration:none;
+  border:none;cursor:pointer;
+  box-shadow:0 0 40px rgba(255,45,120,.45);
+  transition:transform .2s,box-shadow .2s;
+  position:relative;overflow:hidden;
+}
+.btn-fire::before{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.btn-fire:hover{transform:translateY(-3px);box-shadow:0 0 70px rgba(255,45,120,.7);}
+.btn-fire:hover::before{opacity:1;}
+
+.btn-ghost{
+  display:inline-block;
+  background:transparent;
+  color:var(--white);
+  font-family:var(--body);
+  font-weight:600;
+  font-size:14px;
+  padding:14px 28px;
+  border-radius:50px;
+  text-decoration:none;
+  border:1px solid var(--border);
+  transition:border-color .2s,color .2s;
+}
+.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  padding:100px 20px 80px;
+  position:relative;overflow:hidden;
+}
+
+/* animated gradient bg */
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%,rgba(255,45,120,.10) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 80%,rgba(0,229,255,.08) 0%,transparent 60%),
+    radial-gradient(ellipse 40% 40% at 50% 50%,rgba(155,77,255,.06) 0%,transparent 70%);
+  animation:bgpulse 8s ease-in-out infinite alternate;
+}
+@keyframes bgpulse{
+  from{opacity:.6;}
+  to{opacity:1;}
+}
+
+/* grid lines */
+.hero-grid{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(30,30,48,.5) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(30,30,48,.5) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 30%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 50%,black 30%,transparent 100%);
+}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,45,120,.12);
+  border:1px solid rgba(255,45,120,.3);
+  color:var(--pink);
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:8px 18px;border-radius:50px;
+  margin-bottom:32px;
+  animation:fadeUp .6s ease both;
+  position:relative;z-index:1;
+}
+.badge-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--pink);
+  animation:blink 1.2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+.hero h1{
+  font-family:var(--display);
+  font-size:clamp(60px,12vw,130px);
+  line-height:.9;
+  letter-spacing:2px;
+  margin-bottom:24px;
+  animation:fadeUp .6s .1s ease both;
+  position:relative;z-index:1;
+}
+.h1-line1{display:block;}
+.h1-acc{color:var(--pink);}
+.h1-acc2{color:var(--cyan);}
+
+.hero-desc{
+  font-size:clamp(16px,2.2vw,20px);
+  color:var(--muted);
+  max-width:560px;
+  margin:0 auto 44px;
+  animation:fadeUp .6s .2s ease both;
+  position:relative;z-index:1;
+  line-height:1.7;
+}
+.hero-desc strong{color:var(--white);}
+
+.hero-ctas{
+  display:flex;gap:14px;flex-wrap:wrap;justify-content:center;
+  animation:fadeUp .6s .3s ease both;
+  position:relative;z-index:1;
+}
+
+/* scroll indicator */
+.scroll-hint{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;
+  animation:fadeUp .6s .6s ease both;
+  z-index:1;
+}
+.scroll-arrow{
+  width:20px;height:20px;
+  border-right:2px solid var(--muted);
+  border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);
+  animation:arrowBounce 1.4s ease-in-out infinite;
+}
+@keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(6px);}}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  padding:24px 20px;
+}
+.stats-inner{
+  max-width:900px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  text-align:center;
+}
+.stat-num{
+  font-family:var(--display);
+  font-size:48px;line-height:1;
+  margin-bottom:4px;
+}
+.stat-num.p{color:var(--pink);}
+.stat-num.c{color:var(--cyan);}
+.stat-num.y{color:var(--yellow);}
+.stat-num.g{color:var(--green);}
+.stat-label{font-size:12px;color:var(--muted);font-weight:500;letter-spacing:.5px;}
+
+/* ── SECTIONS ── */
+.sec{padding:88px 0;position:relative;}
+.container{max-width:940px;margin:0 auto;padding:0 24px;}
+.divider{border:none;border-top:1px solid var(--border);margin:0;}
+
+.sec-tag{
+  font-size:10px;font-weight:700;letter-spacing:3px;
+  text-transform:uppercase;color:var(--pink);
+  margin-bottom:12px;
+}
+.sec-title{
+  font-family:var(--display);
+  font-size:clamp(40px,6vw,72px);
+  line-height:.95;letter-spacing:1.5px;
+  margin-bottom:18px;
+}
+.sec-desc{
+  color:var(--muted);
+  max-width:520px;
+  font-size:15px;margin-bottom:52px;
+  line-height:1.7;
+}
+
+/* ── PROBLEM SECTION ── */
+.problem-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.problem-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px 24px;
+  position:relative;overflow:hidden;
+  transition:transform .2s,border-color .2s;
+}
+.problem-card:hover{transform:translateY(-4px);border-color:rgba(255,45,120,.35);}
+.problem-card::after{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--pink),transparent);
+  opacity:0;transition:opacity .2s;
+}
+.problem-card:hover::after{opacity:1;}
+.pc-emoji{font-size:32px;margin-bottom:14px;display:block;}
+.pc-title{font-size:15px;font-weight:700;margin-bottom:8px;}
+.pc-text{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* ── WHAT YOU GET ── */
+.what-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:24px;
+}
+@media(max-width:640px){.what-wrap{grid-template-columns:1fr;}}
+.what-block{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.what-block:hover{border-color:rgba(0,229,255,.3);transform:translateY(-3px);}
+.what-block.featured{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,rgba(255,45,120,.07) 0%,rgba(155,77,255,.05) 100%);
+  border-color:rgba(255,45,120,.25);
+}
+.wb-icon{font-size:36px;margin-bottom:16px;display:block;}
+.wb-title{font-size:18px;font-weight:700;margin-bottom:10px;}
+.wb-desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:18px;}
+.wb-items{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.wb-items li{
+  font-size:13px;color:var(--white);
+  display:flex;align-items:flex-start;gap:10px;
+  padding:8px 12px;
+  background:rgba(255,255,255,.03);
+  border-radius:8px;
+}
+.wb-items li::before{content:'→';color:var(--pink);flex-shrink:0;font-size:12px;margin-top:1px;}
+.wb-tag{
+  display:inline-block;
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 10px;border-radius:50px;margin-bottom:16px;
+}
+.tag-pink{background:rgba(255,45,120,.15);color:var(--pink);}
+.tag-cyan{background:rgba(0,229,255,.12);color:var(--cyan);}
+.tag-purple{background:rgba(155,77,255,.15);color:var(--purple);}
+.tag-yellow{background:rgba(255,234,0,.12);color:var(--yellow);}
+.tag-green{background:rgba(0,255,136,.12);color:var(--green);}
+
+/* ── TRIGGERS ── */
+.triggers-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+  gap:16px;
+}
+.trigger-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px 22px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s;
+}
+.trigger-card:hover{border-color:var(--cyan);transform:translateY(-3px);}
+.trig-num{
+  font-family:var(--display);
+  font-size:56px;line-height:1;
+  color:rgba(0,229,255,.12);
+  margin-bottom:6px;
+}
+.trig-name{font-size:19px;font-weight:700;color:var(--cyan);margin-bottom:8px;}
+.trig-desc{font-size:13px;color:var(--muted);line-height:1.55;}
+.trig-example{
+  margin-top:14px;
+  padding:10px 12px;
+  background:rgba(0,229,255,.05);
+  border-left:2px solid var(--cyan);
+  border-radius:0 8px 8px 0;
+  font-size:12px;color:rgba(240,238,255,.6);
+  font-style:italic;
+}
+
+/* ── CATEGORIES ── */
+.cats-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:12px;
+}
+.cat-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:20px 16px;
+  text-align:center;
+  transition:border-color .2s,transform .2s,background .2s;
+  cursor:default;
+}
+.cat-card:hover{
+  border-color:rgba(255,45,120,.4);
+  background:#161626;
+  transform:translateY(-2px);
+}
+.cat-emoji{font-size:28px;margin-bottom:10px;display:block;}
+.cat-name{font-size:13px;font-weight:600;margin-bottom:4px;}
+.cat-count{font-size:11px;color:var(--muted);}
+
+/* ── SCRIPTS ── */
+.script-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  margin-bottom:20px;
+  transition:border-color .2s;
+}
+.script-card:hover{border-color:rgba(155,77,255,.4);}
+.sc-head{
+  padding:20px 26px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:14px;
+}
+.sc-num{
+  font-family:var(--display);
+  font-size:22px;color:var(--purple);width:30px;flex-shrink:0;
+}
+.sc-title{font-weight:700;font-size:16px;}
+.sc-body{padding:20px 26px;display:flex;flex-direction:column;gap:14px;}
+.sc-step{display:flex;gap:12px;align-items:flex-start;}
+.sc-label{
+  font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:4px 10px;border-radius:50px;white-space:nowrap;flex-shrink:0;margin-top:2px;
+}
+.lbl-hook{background:rgba(255,45,120,.15);color:var(--pink);}
+.lbl-dev{background:rgba(0,229,255,.12);color:var(--cyan);}
+.lbl-cta{background:rgba(155,77,255,.15);color:var(--purple);}
+.sc-text{font-size:14px;color:rgba(240,238,255,.75);line-height:1.6;}
+
+/* ── CHECKLIST PREVIEW ── */
+.checklist-preview{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:12px;
+}
+.chk-item{
+  display:flex;align-items:center;gap:12px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:14px 16px;
+}
+.chk-icon{
+  width:22px;height:22px;flex-shrink:0;
+  border-radius:6px;
+  border:2px solid rgba(0,255,136,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;color:var(--green);
+}
+.chk-text{font-size:13px;font-weight:500;}
+
+/* ── BONUS ── */
+.bonus-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+}
+.bonus-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:28px;
+  transition:border-color .2s,transform .2s;
+}
+.bonus-card:hover{border-color:rgba(155,77,255,.35);transform:translateY(-3px);}
+.bc-title{font-size:16px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+.bc-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.bc-list li{
+  font-size:13px;color:var(--muted);
+  padding:7px 0;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:8px;
+}
+.bc-list li:last-child{border-bottom:none;}
+.bc-list li::before{content:'→';color:var(--pink);font-size:11px;flex-shrink:0;}
+
+/* ── FINAL CTA ── */
+.final-cta{
+  padding:100px 0;
+  background:var(--bg2);
+  text-align:center;
+  position:relative;overflow:hidden;
+}
+.final-cta-glow{
+  position:absolute;
+  border-radius:50%;filter:blur(100px);pointer-events:none;
+}
+.fcg1{width:500px;height:300px;background:var(--pink);opacity:.07;top:0;left:-100px;}
+.fcg2{width:400px;height:300px;background:var(--cyan);opacity:.06;bottom:0;right:-100px;}
+.final-cta .sec-title{font-size:clamp(48px,8vw,100px);margin-bottom:20px;}
+.final-price{
+  display:inline-flex;flex-direction:column;align-items:center;
+  margin-bottom:36px;
+}
+.price-from{
+  font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);margin-bottom:4px;
+}
+.price-value{
+  font-family:var(--display);
+  font-size:72px;line-height:1;color:var(--green);
+  letter-spacing:2px;
+}
+.price-sub{font-size:13px;color:var(--muted);margin-top:4px;}
+.final-features{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
+  margin-bottom:44px;
+}
+.feat-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;
+  padding:6px 14px;border-radius:50px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+  color:var(--white);
+}
+.feat-pill span{color:var(--green);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:44px 20px;
+  color:var(--muted);
+  font-size:13px;
+}
+.foot-logo{
+  font-family:var(--display);
+  font-size:28px;color:var(--pink);
+  letter-spacing:2px;margin-bottom:12px;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(24px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+.fade-in.visible{opacity:1;transform:none;}
+
+/* ── MOBILE ── */
+@media(max-width:640px){
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .cats-grid{grid-template-columns:repeat(3,1fr);}
+  .nav{padding:12px 18px;}
+  .price-value{font-size:54px;}
+
+  .hero{min-height:auto;padding:80px 20px 44px;}
+  .hero h1{font-size:clamp(50px,15vw,76px);margin-bottom:14px;}
+  .hero-desc{font-size:15px;margin-bottom:28px;}
+  .scroll-hint{display:none;}
+
+  .sec{padding:48px 0;}
+  .sec-title{font-size:clamp(30px,9vw,50px);}
+  .sec-desc{margin-bottom:28px;}
+
+  .stats-bar{padding:16px 14px;}
+  .stat-num{font-size:34px;}
+  .stat-label{font-size:10px;}
+
+  .what-wrap{gap:12px;}
+  .what-block{padding:20px 16px;}
+  .triggers-grid{grid-template-columns:1fr;}
+  .bonus-grid{grid-template-columns:1fr;}
+  .checklist-preview{grid-template-columns:1fr;}
+  .problem-grid{grid-template-columns:1fr 1fr;}
+
+  .final-cta{padding:56px 0;}
+  .final-features{gap:7px;}
+  .feat-pill{font-size:11px;padding:5px 11px;}
+  .btn-fire{font-size:15px;padding:13px 26px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo">🚀 VIRAL FACTORY</div>
+  <a href="https://pay.cakto.com.br/qm7vyrp_850175" target="_blank" class="btn-fire nav-cta" style="font-size:13px;padding:10px 22px;">Quero Agora</a>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-badge">
+    <div class="badge-dot"></div>
+    Para TikTok &amp; Reels — Acesso Imediato
+  </div>
+
+  <h1>
+    <span class="h1-line1">FÁBRICA DE</span>
+    <span class="h1-acc">CONTEÚDO</span><br>
+    <span class="h1-acc2">VIRAL</span>
+  </h1>
+
+  <p class="hero-desc">
+    Nunca mais fique sem ideia.<br>
+    <strong>100 ideias prontas</strong>, os 7 gatilhos que viralizam,
+    roteiros completos e um checklist para você <strong>postar todo dia</strong>.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="https://pay.cakto.com.br/qm7vyrp_850175" target="_blank" class="btn-fire">
+      🔥 Quero a Fábrica Agora
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ═══ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-num p">100</div>
+      <div class="stat-label">Ideias Prontas</div>
+    </div>
+    <div>
+      <div class="stat-num c">7</div>
+      <div class="stat-label">Gatilhos Psicológicos</div>
+    </div>
+    <div>
+      <div class="stat-num y">5</div>
+      <div class="stat-label">Roteiros Completos</div>
+    </div>
+    <div>
+      <div class="stat-num g">∞</div>
+      <div class="stat-label">Ideias de Nicho</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ═══ PROBLEMA ═══ -->
+<section class="sec fade-in">
+  <div class="container">
+    <div class="sec-tag">Por que você ainda não cresce?</div>
+    <h2 class="sec-title">O problema não é<br><span style="color:var(--pink)">falta de talento</span></h2>
+    <p class="sec-desc">É falta de sistema. Quem cresce no TikTok e Reels não é o mais criativo — é quem posta todos os dias usando padrões que já funcionam.</p>
+
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="pc-emoji">😵‍💫</span>
+        <div class="pc-title">Trava na criatividade</div>
+        <div class="pc-text">Fica esperando a ideia perfeita. Resultado: não posta. Quem cresce usa ideias comprovadas e itera rápido.</div>
+      </div>
+      <div class="problem-card">
+        <span class="pc-emoji">📚</span>
+        <div class="pc-title">Consome mais do que produz</div>
+        <div class="pc-text">Cursos, vídeos, tutoriais... e no final o feed fica parado. O algoritmo recompensa quem posta, não quem estuda.</div>
+      </div>
+      <div class="problem-card">
+        <span class="pc-emoji">🎲</span>
+        <div class="pc-title">Posta sem padrão</div>
+        <div class="pc-text">Conteúdo aleatório não cresce. Viral não é sorte — é repetição de uma estrutura que o algoritmo ama.</div>
+      </div>
+      <div class="problem-card">
+        <span class="pc-emoji">🚀</span>
+        <div class="pc-title">A solução é simples</div>
+        <div class="pc-text">Use ideias prontas. Aplique os gatilhos certos. Poste todo dia. A Fábrica entrega exatamente isso.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ O QUE VOCÊ GANHA ═══ -->
+<section class="sec fade-in" id="o-que-voce-ganha">
+  <div class="container">
+    <div class="sec-tag">O que vem dentro</div>
+    <h2 class="sec-title">Tudo que você<br><span style="color:var(--cyan)">precisa</span> para virali­zar</h2>
+    <p class="sec-desc">Um arsenal completo para você nunca mais travar. Acesso imediato, para usar hoje mesmo.</p>
+
+    <div class="what-wrap">
+
+      <!-- FEATURED -->
+      <div class="what-block featured">
+        <span class="wb-icon">💡</span>
+        <span class="wb-tag tag-pink">Módulo Principal</span>
+        <div class="wb-title">100 Ideias Prontas para Vídeos</div>
+        <div class="wb-desc">Organizadas em 10 categorias de nicho. Clique, escolha e grave. Sem bloco criativo, sem enrolação.</div>
+        <ul class="wb-items">
+          <li>📱 Rotina &amp; Identificação — conteúdo do dia a dia que o público se vê</li>
+          <li>💰 Dinheiro &amp; Valor — temas que sempre viralizam</li>
+          <li>🧠 Psicologia &amp; Mente — desperta emoção e saves</li>
+          <li>🎭 Polêmica &amp; Opinião — gera comentário e alcance orgânico</li>
+          <li>🎓 Educativo Simples — posiciona você como referência</li>
+          <li>😂 Humor &amp; Relatable — compartilhamento reflexivo</li>
+          <li>🚀 Transformação — antes/depois que inspira ação</li>
+          <li>🔥 Curiosidade &amp; Gancho — prende atenção nos primeiros segundos</li>
+          <li>📊 Autoridade &amp; Posicionamento — constrói confiança</li>
+          <li>⚡ Ação &amp; Direto ao Ponto — urgência que converte</li>
+        </ul>
+      </div>
+
+      <div class="what-block">
+        <span class="wb-icon">🧠</span>
+        <span class="wb-tag tag-cyan">Módulo 2</span>
+        <div class="wb-title">Os 7 Gatilhos Psicológicos</div>
+        <div class="wb-desc">Os gatilhos que fazem o cérebro não conseguir dar skip. Use pelo menos 1 em cada vídeo.</div>
+        <ul class="wb-items">
+          <li>Curiosidade — abre loop que precisa fechar</li>
+          <li>Identificação — "isso sou eu", ela compartilha</li>
+          <li>Polêmica — divide a audiência, alimenta o algoritmo</li>
+          <li>Autoridade — gera confiança instantânea</li>
+          <li>Humor — dopamina = engajamento</li>
+          <li>Transformação — inspira ação emocional</li>
+          <li>Segredo — acesso exclusivo que todos querem</li>
+        </ul>
+      </div>
+
+      <div class="what-block">
+        <span class="wb-icon">🎬</span>
+        <span class="wb-tag tag-purple">Módulo 3</span>
+        <div class="wb-title">5 Roteiros Prontos</div>
+        <div class="wb-desc">Estrutura completa: gancho, conteúdo e chamada para ação. Só adaptar pro seu nicho e gravar.</div>
+        <ul class="wb-items">
+          <li>O Segredo que Ninguém Conta</li>
+          <li>Antes vs Depois — Transformação</li>
+          <li>Opinião Impopular (Polêmica)</li>
+          <li>Tutorial Rápido (30 segundos)</li>
+          <li>Identificação — "Só quem é assim entende"</li>
+        </ul>
+      </div>
+
+      <div class="what-block">
+        <span class="wb-icon">✅</span>
+        <span class="wb-tag tag-yellow">Módulo 4</span>
+        <div class="wb-title">Checklist de Publicação</div>
+        <div class="wb-desc">10 pontos obrigatórios antes de publicar. Transforma bons vídeos em vídeos virais.</div>
+        <ul class="wb-items">
+          <li>Gancho forte nos 3 primeiros segundos</li>
+          <li>Vídeo curto e direto (até 30 segundos)</li>
+          <li>Pelo menos 1 gatilho psicológico</li>
+          <li>Legenda e texto na tela</li>
+          <li>CTA no final</li>
+        </ul>
+      </div>
+
+      <div class="what-block" style="border-color:rgba(0,255,136,.15);">
+        <span class="wb-icon">🎁</span>
+        <span class="wb-tag tag-green">Bônus</span>
+        <div class="wb-title">Kit de Início Rápido</div>
+        <div class="wb-desc">Tudo que você precisa para montar seu perfil do zero e começar hoje.</div>
+        <ul class="wb-items">
+          <li>✨ 8 sugestões de nomes virais para perfil</li>
+          <li>💬 7 bios prontas para bio do Instagram/TikTok</li>
+          <li>🎯 10 ideias de nicho quentes em 2025</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ OS 7 GATILHOS ═══ -->
+<section class="sec fade-in">
+  <div class="container">
+    <div class="sec-tag">Os gatilhos</div>
+    <h2 class="sec-title">O que faz um vídeo<br><span style="color:var(--pink)">explodir</span></h2>
+    <p class="sec-desc">O cérebro não consegue ignorar esses 7 padrões. Inclua pelo menos um em cada conteúdo e veja o algoritmo trabalhar por você.</p>
+
+    <div class="triggers-grid">
+      <div class="trigger-card">
+        <div class="trig-num">01</div>
+        <div class="trig-name">Curiosidade</div>
+        <div class="trig-desc">Abre um loop mental que precisa ser fechado. A pessoa não consegue dar skip.</div>
+        <div class="trig-example">"Eu nunca imaginei que isso fosse real…"</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trig-num">02</div>
+        <div class="trig-name">Identificação</div>
+        <div class="trig-desc">A pessoa pensa "isso sou eu". Quando se vê, ela compartilha — e alcance explode.</div>
+        <div class="trig-example">"Só quem faz isso vai entender"</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trig-num">03</div>
+        <div class="trig-name">Polêmica</div>
+        <div class="trig-desc">Opinião que divide. Quem concorda salva. Quem discorda comenta. Os dois alimentam o algoritmo.</div>
+        <div class="trig-example">"Vou falar algo que vai te incomodar"</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trig-num">04</div>
+        <div class="trig-name">Autoridade</div>
+        <div class="trig-desc">Experiência real mostrada de forma direta. Gera confiança em segundos.</div>
+        <div class="trig-example">"Depois de 6 meses testando, aprendi…"</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trig-num">05</div>
+        <div class="trig-name">Humor</div>
+        <div class="trig-desc">Riso libera dopamina. Conteúdo que faz rir é compartilhado de forma reflexiva e automática.</div>
+        <div class="trig-example">"Expectativa vs realidade"</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trig-num">06</div>
+        <div class="trig-name">Transformação</div>
+        <div class="trig-desc">Antes vs depois. A jornada de mudança ativa emoção e inspira ação nos outros.</div>
+        <div class="trig-example">"Há X meses eu era assim…"</div>
+      </div>
+      <div class="trigger-card">
+        <div class="trig-num">07</div>
+        <div class="trig-name">Segredo</div>
+        <div class="trig-desc">Acesso a conhecimento exclusivo que os outros não têm. Cria FOMO instantâneo.</div>
+        <div class="trig-example">"O que ninguém te conta sobre…"</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ CATEGORIAS ═══ -->
+<section class="sec fade-in">
+  <div class="container">
+    <div class="sec-tag">100 Ideias</div>
+    <h2 class="sec-title">10 categorias para<br><span style="color:var(--yellow)">qualquer nicho</span></h2>
+    <p class="sec-desc">Cada categoria tem 10 ideias prontas para adaptar ao seu tema. 100 no total — um mês inteiro de conteúdo sem criar nada do zero.</p>
+
+    <div class="cats-grid">
+      <div class="cat-card"><span class="cat-emoji">📱</span><div class="cat-name">Rotina</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">💰</span><div class="cat-name">Dinheiro</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">🧠</span><div class="cat-name">Psicologia</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">🎭</span><div class="cat-name">Polêmica</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">🎓</span><div class="cat-name">Educativo</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">😂</span><div class="cat-name">Humor</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">🚀</span><div class="cat-name">Transformação</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">🔥</span><div class="cat-name">Curiosidade</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">📊</span><div class="cat-name">Autoridade</div><div class="cat-count">10 ideias</div></div>
+      <div class="cat-card"><span class="cat-emoji">⚡</span><div class="cat-name">Ação</div><div class="cat-count">10 ideias</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ ROTEIROS ═══ -->
+<section class="sec fade-in">
+  <div class="container">
+    <div class="sec-tag">Roteiros Prontos</div>
+    <h2 class="sec-title">Só <span style="color:var(--purple)">copiar</span><br>e gravar</h2>
+    <p class="sec-desc">Cada roteiro tem gancho, desenvolvimento e CTA prontos. Adapte para o seu nicho em minutos.</p>
+
+    <div class="script-card">
+      <div class="sc-head">
+        <div class="sc-num">01</div>
+        <div class="sc-title">O Segredo que Ninguém Conta</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-step">
+          <span class="sc-label lbl-hook">Gancho</span>
+          <div class="sc-text">"Eu passei [X tempo] sem saber disso e me arrependo muito. Mas ninguém me contou." — olhando pra câmera, sem corte.</div>
+        </div>
+        <div class="sc-step">
+          <span class="sc-label lbl-dev">Conteúdo</span>
+          <div class="sc-text">Revele 1 coisa específica que mudou sua perspectiva sobre [tema]. Exemplo real. Causa → efeito → o que você faria diferente.</div>
+        </div>
+        <div class="sc-step">
+          <span class="sc-label lbl-cta">CTA</span>
+          <div class="sc-text">"Segue aqui porque toda semana eu trago uma coisa assim." ou "Salva esse vídeo pra não esquecer."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="sc-head">
+        <div class="sc-num">02</div>
+        <div class="sc-title">Antes vs Depois — Transformação</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-step">
+          <span class="sc-label lbl-hook">Gancho</span>
+          <div class="sc-text">"Há [X meses] eu era assim: [pior ponto]. Hoje eu sou assim: [melhor ponto]. A diferença? Uma decisão."</div>
+        </div>
+        <div class="sc-step">
+          <span class="sc-label lbl-dev">Conteúdo</span>
+          <div class="sc-text">Conte a virada de forma cronológica. 3 pontos: o problema, a decisão, o resultado. Detalhes criam mais conexão do que generalidades.</div>
+        </div>
+        <div class="sc-step">
+          <span class="sc-label lbl-cta">CTA</span>
+          <div class="sc-text">"Se você está no ponto que eu estava, comenta aqui e eu te respondo."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="sc-head">
+        <div class="sc-num">03</div>
+        <div class="sc-title">Opinião Impopular (Polêmica)</div>
+      </div>
+      <div class="sc-body">
+        <div class="sc-step">
+          <span class="sc-label lbl-hook">Gancho</span>
+          <div class="sc-text">"Vou falar uma coisa que vai te incomodar. Mas precisa ser dito." — pausa de 1 segundo. Olho firme na câmera.</div>
+        </div>
+        <div class="sc-step">
+          <span class="sc-label lbl-dev">Conteúdo</span>
+          <div class="sc-text">Argumente com 2 motivos reais. Questione comportamentos, não pessoas. "Quando [X] acontece, a maioria faz Y. Mas isso causa Z."</div>
+        </div>
+        <div class="sc-step">
+          <span class="sc-label lbl-cta">CTA</span>
+          <div class="sc-text">"Concorda ou não? Comenta aqui." — não apague os que discordam; eles amplificam o vídeo.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:10px;">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">+ 2 roteiros completos disponíveis dentro da Fábrica</p>
+      <a href="https://pay.cakto.com.br/qm7vyrp_850175" target="_blank" class="btn-fire">🎬 Acessar Todos os Roteiros</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ CHECKLIST ═══ -->
+<section class="sec fade-in">
+  <div class="container">
+    <div class="sec-tag">Checklist Final</div>
+    <h2 class="sec-title">Antes de<br><span style="color:var(--yellow)">publicar</span></h2>
+    <p class="sec-desc">10 pontos que separam vídeos que somem de vídeos que viralizam. Incluso e interativo dentro da Fábrica.</p>
+
+    <div class="checklist-preview">
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Postar 1 vídeo por dia</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Gancho forte nos primeiros 3 segundos</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Vídeos curtos (até 30 segundos)</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Falar de forma simples e direta</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Usar pelo menos 1 gatilho psicológico</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Incluir legenda/texto na tela</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Ter uma CTA no final</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Postar no horário de pico do público</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Responder comentários nas primeiras horas</div></div>
+      <div class="chk-item"><div class="chk-icon">✓</div><div class="chk-text">Testar variações de ideia toda semana</div></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ BONUS ═══ -->
+<section class="sec fade-in">
+  <div class="container">
+    <div class="sec-tag">Bônus Grátis</div>
+    <h2 class="sec-title">Extras para<br><span style="color:var(--purple)">decolar</span></h2>
+    <p class="sec-desc">Tudo incluso para você montar seu perfil do zero e começar a postar hoje.</p>
+
+    <div class="bonus-grid">
+      <div class="bonus-card">
+        <div class="bc-title">✨ Nomes Virais para Perfil</div>
+        <ul class="bc-list">
+          <li>Vida Real com [Seu Nome]</li>
+          <li>[Seu Nome] Direto ao Ponto</li>
+          <li>O Canal do [Tema] Simples</li>
+          <li>[Seu Nome] sem Filtro</li>
+          <li>Aprenda com [Seu Nome]</li>
+          <li>A Verdade sobre [Tema]</li>
+          <li>[Seu Nome] Descomplicado</li>
+          <li>Dicas de [Tema] Rápidas</li>
+        </ul>
+      </div>
+      <div class="bonus-card">
+        <div class="bc-title">💬 Bios Prontas</div>
+        <ul class="bc-list">
+          <li>📲 [Tema] simples pra quem não tem tempo</li>
+          <li>🎯 [Resultado] sem complicação</li>
+          <li>✅ Dicas práticas de [tema] todo dia</li>
+          <li>🔥 Fui de zero a [resultado] e vou te contar</li>
+          <li>💡 O que aprendi sobre [tema] em [X] anos</li>
+          <li>📱 Conteúdo direto ao ponto sobre [tema]</li>
+          <li>🚀 [Promessa] em menos de 60 segundos</li>
+        </ul>
+      </div>
+      <div class="bonus-card">
+        <div class="bc-title">🎯 Nichos Quentes em 2025</div>
+        <ul class="bc-list">
+          <li>Finanças pessoais para iniciantes</li>
+          <li>Produtividade e rotina real</li>
+          <li>Alimentação saudável prática</li>
+          <li>Desenvolvimento pessoal sem papo</li>
+          <li>Empreendedorismo digital</li>
+          <li>Saúde mental no dia a dia</li>
+          <li>Tecnologia e IA para leigos</li>
+          <li>Carreira e mercado de trabalho</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ FINAL CTA ═══ -->
+<section class="final-cta">
+  <div class="final-cta-glow fcg1"></div>
+  <div class="final-cta-glow fcg2"></div>
+
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="sec-tag" style="text-align:center;">Chega de planejar</div>
+    <h2 class="sec-title">Para de esperar.<br><span style="color:var(--pink)">Começa a postar.</span></h2>
+    <p style="color:var(--muted);max-width:460px;margin:0 auto 40px;font-size:16px;line-height:1.7;">
+      O algoritmo premia quem posta. Você tem 100 ideias prontas, 7 gatilhos, 5 roteiros e um checklist completo. <strong style="color:var(--white)">Não tem mais desculpa.</strong>
+    </p>
+
+    <div class="final-features">
+      <div class="feat-pill"><span>✓</span> 100 Ideias Prontas</div>
+      <div class="feat-pill"><span>✓</span> 7 Gatilhos Psicológicos</div>
+      <div class="feat-pill"><span>✓</span> 5 Roteiros Completos</div>
+      <div class="feat-pill"><span>✓</span> Checklist de Publicação</div>
+      <div class="feat-pill"><span>✓</span> Kit de Início Rápido</div>
+      <div class="feat-pill"><span>✓</span> Acesso Imediato</div>
+    </div>
+
+    <a href="https://pay.cakto.com.br/qm7vyrp_850175" target="_blank" class="btn-fire" style="font-size:18px;padding:18px 52px;">
+      🚀 Quero a Fábrica Agora
+    </a>
+
+    <p style="margin-top:20px;font-size:12px;color:var(--muted);">
+      Acesso imediato após a confirmação · Funciona no celular e no computador
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="foot-logo">VIRAL FACTORY 🚀</div>
+  <p>Fábrica de Conteúdo Viral para TikTok e Reels</p>
+  <p style="margin-top:6px;">Feito para iniciantes que querem crescer de verdade.</p>
+</footer>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
